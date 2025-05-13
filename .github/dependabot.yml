@@ -1,0 +1,22 @@
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    # Look for `package.json` and `lock` files in the `root` directory
+    directory: "/"
+    # Check the npm registry for updates every day (weekdays)
+    schedule:
+      interval: "daily"
+    # Specify labels for npm pull requests
+    labels:
+      - "npm"
+      - "dependencies"
+    # Set the reviewers for the pull requests
+    # reviewers:
+    #   - "your-github-username"
+    # Allow up to 10 open pull requests for npm dependencies
+    open-pull-requests-limit: 10
+    # Configure commit message conventions
+    commit-message:
+      prefix: "chore"
+      include: "scope"

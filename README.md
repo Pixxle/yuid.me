@@ -117,6 +117,18 @@ npm test
 
 This application is configured for deployment on Vercel. Simply connect your GitHub repository to Vercel for automatic deployments.
 
+## Maintenance
+
+### Automated Dependency Updates
+
+This project uses Dependabot to automatically keep dependencies up-to-date and secure. Dependabot creates pull requests to update dependencies according to the configuration in `.github/dependabot.yml`.
+
+Dependabot is configured to:
+
+- Check for npm dependency updates daily
+- Create pull requests with appropriate labels
+- Auto-merge minor and patch updates after CI passes
+
 ## License
 
 ISC
