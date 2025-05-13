@@ -1,15 +1,29 @@
 const express = require('express');
-const { v4: uuidv4, validate: uuidValidate } = require('uuid');
 const morgan = require('morgan');
+const v4Api = require('./api/v4');
+const v3Api = require('./api/v3');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Configure morgan for logging HTTP requests
 morgan.token('uuid-request-type', (req) => {
-  if (req.path === '/') return 'single-uuid';
-  if (req.path.startsWith('/v/')) return 'uuid-validation';
-  if (!isNaN(parseInt(req.path.substring(1)))) return `multiple-uuids:${parseInt(req.path.substring(1))}`;
+  const path = req.path;
+  
+  if (path === '/') return 'single-uuid-v4';
+  if (path === '/v3') return 'single-uuid-v3';
+  if (path.startsWith('/v/')) return 'uuid-validation';
+  if (path.startsWith('/v3/v/')) return 'uuid-validation';
+  if (path.startsWith('/v4/v/')) return 'uuid-validation';
+  
+  if (!isNaN(parseInt(path.substring(1)))) {
+    return `multiple-uuids-v4:${parseInt(path.substring(1))}`;
+  }
+  
+  if (path.startsWith('/v3/') && !isNaN(parseInt(path.substring(4)))) {
+    return `multiple-uuids-v3:${parseInt(path.substring(4))}`;
+  }
+  
   return 'unknown';
 });
 
@@ -39,42 +53,20 @@ app.use((req, res, next) => {
   next();
 });
 
-// Generate a single UUID
-app.get('/', (req, res) => {
-  const uuid = uuidv4();
-  console.log(`[${new Date().toISOString()}] Generated single UUID: ${uuid}`);
-  res.send(uuid);
-});
+// Validation routes (most specific first)
+app.get('/v4/v/:uuid', v4Api.validate);
+app.get('/v3/v/:uuid', v3Api.validate);
+app.get('/v/:uuid', v4Api.validate);
 
-// Generate multiple UUIDs
-app.get('/:count', (req, res) => {
-  const count = parseInt(req.params.count);
-  
-  // Validate the count parameter
-  if (isNaN(count) || count < 1 || count > 1000) {
-    console.log(`[${new Date().toISOString()}] Invalid count parameter: ${req.params.count}`);
-    return res.status(400).send('Count must be a number between 1 and 1000');
-  }
-  
-  // Generate the specified number of UUIDs
-  console.log(`[${new Date().toISOString()}] Generating ${count} UUIDs`);
-  const uuids = Array.from({ length: count }, () => uuidv4());
-  res.send(uuids.join('\n'));
-});
+// Explicit version routes
+app.get('/v4/:count', v4Api.generateMultiple);
+app.get('/v3/:count', v3Api.generateMultiple);
+app.get('/v4', v4Api.generateSingle);
+app.get('/v3', v3Api.generateSingle);
 
-// Validate UUID
-app.get('/v/:uuid', (req, res) => {
-  const uuid = req.params.uuid;
-  const isValid = uuidValidate(uuid);
-  
-  console.log(`[${new Date().toISOString()}] UUID validation: ${uuid} - ${isValid ? 'VALID' : 'INVALID'}`);
-  
-  if (isValid) {
-    res.send(`VALID`);
-  } else {
-    res.status(400).send(`INVALID`);
-  }
-});
+// Default routes (v4)
+app.get('/:count', v4Api.generateMultiple);
+app.get('/', v4Api.generateSingle);
 
 // Start the server
 if (process.env.NODE_ENV !== 'test') {
