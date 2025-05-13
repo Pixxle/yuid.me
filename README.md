@@ -8,6 +8,7 @@ A minimal and efficient UUID generation service that provides plain text UUIDs v
 - Generate multiple UUIDs in one request (up to 1000)
 - Validate existing UUIDs
 - Plain text responses for easy integration
+- Comprehensive request logging
 
 ## API Endpoints
 
@@ -116,6 +117,27 @@ npm test
 ## Deployment
 
 This application is configured for deployment on Vercel. Simply connect your GitHub repository to Vercel for automatic deployments.
+
+## Logging
+
+The application includes comprehensive request logging:
+
+- **HTTP Request Logging**: Uses Morgan to log all incoming HTTP requests with detailed information including:
+
+  - IP address
+  - HTTP method
+  - URL
+  - Status code
+  - Response time
+  - Request type (single UUID, multiple UUIDs, validation)
+
+- **Detailed Application Logging**: Every request is logged with timestamps, showing:
+  - When requests are received
+  - Request details (method, URL, source IP)
+  - Response details (status code, response time)
+  - Operation-specific information (UUIDs generated, validation results)
+
+These logs are output to the console and can be captured by any log aggregation service when deployed to production.
 
 ## Maintenance
 
