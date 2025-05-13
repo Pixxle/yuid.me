@@ -153,7 +153,7 @@ Dependabot is configured to:
 
 ## License
 
-ISC
+MIT
 
 ## Contributing
 
