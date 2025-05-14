@@ -1,0 +1,34 @@
+# Git files
+.git
+.gitignore
+
+# Node.js files
+node_modules
+npm-debug.log
+
+# Test files
+tests
+jest.config.js
+*.test.js
+
+# Development files
+.vscode
+.idea
+*.md
+!README.md
+LICENSE
+
+# CI/CD files
+.github
+.gitlab-ci.yml
+.travis.yml
+
+# Environment files
+.env
+.env.*
+
+# Build artifacts and logs
+logs
+*.log
+coverage
+.nyc_output
