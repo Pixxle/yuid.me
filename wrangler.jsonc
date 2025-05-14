@@ -1,0 +1,15 @@
+ {
+  "name": "yuid",
+  "compatibility_date": "2025-05-14",
+  "main": "worker.js",
+  "node_compat": true,
+  "env": {
+    "production": {
+      "routes": [
+        { "pattern": "yuid.me", "custom_domain": true },
+        { "pattern": "*.yuid.me", "custom_domain": true }
+      ]
+    }
+  }
+}
+

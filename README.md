@@ -116,7 +116,39 @@ npm test
 
 ## Deployment
 
-This application is configured for deployment on Vercel. Simply connect your GitHub repository to Vercel for automatic deployments.
+### Deploy to Cloudflare Workers
+
+The application is now configured for deployment to Cloudflare Workers using Wrangler.
+
+1. Install Wrangler (if not already installed):
+
+   ```bash
+   npm install
+   ```
+
+2. Authenticate with Cloudflare (if not already authenticated):
+
+   ```bash
+   npx wrangler login
+   ```
+
+3. Test locally:
+
+   ```bash
+   npm run dev:worker
+   ```
+
+   This will start a local development server that simulates the Cloudflare Workers environment.
+
+4. Deploy to Cloudflare Workers:
+
+   ```bash
+   npm run deploy
+   ```
+
+### Vercel Deployment
+
+This application is also configured for deployment on Vercel. Simply connect your GitHub repository to Vercel for automatic deployments.
 
 ## Logging
 
