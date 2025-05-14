@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    uses: ./.github/workflows/test.yml
+    uses: ./test.yml
 
   deploy:
     name: Deploy to Fly.io
