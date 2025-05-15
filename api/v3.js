@@ -1,3 +1,4 @@
+const helpApi = require('./help');
 const { v3: uuidv3, validate: uuidValidate } = require('uuid');
 
 // Default namespace for UUID v3 (using DNS namespace)
@@ -27,7 +28,7 @@ const generateMultiple = (req, res) => {
   // Validate the count parameter
   if (isNaN(count) || count < 1 || count > 1000) {
     console.log(`[${new Date().toISOString()}] Invalid count parameter: ${req.params.count}`);
-    return res.status(400).send('Count must be a number between 1 and 1000');
+    return res.status(400).send(`Count must be a number between 1 and 1000\n${helpApi.helpMessage}`);
   }
   
   try {

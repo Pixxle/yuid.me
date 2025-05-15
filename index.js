@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const v4Api = require('./api/v4');
 const v3Api = require('./api/v3');
+const helpApi = require('./api/help');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,6 +12,7 @@ morgan.token('uuid-request-type', (req) => {
   const path = req.path;
   
   if (path === '/') return 'single-uuid-v4';
+  if (path === '/h' || path === '/help') return 'usage-help';
   if (path === '/v3') return 'single-uuid-v3';
   if (path.startsWith('/v/')) return 'uuid-validation';
   if (path.startsWith('/v3/v/')) return 'uuid-validation';
@@ -65,6 +67,8 @@ app.get('/v4', v4Api.generateSingle);
 app.get('/v3', v3Api.generateSingle);
 
 // Default routes (v4)
+app.get('/h', helpApi.help);
+app.get('/help', helpApi.help);
 app.get('/:count', v4Api.generateMultiple);
 app.get('/', v4Api.generateSingle);
 

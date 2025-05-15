@@ -1,4 +1,6 @@
+const helpApi = require('./help');
 const { v4: uuidv4, validate: uuidValidate } = require('uuid');
+
 
 // Generate a single UUID v4
 const generateSingle = (req, res) => {
@@ -14,7 +16,7 @@ const generateMultiple = (req, res) => {
   // Validate the count parameter
   if (isNaN(count) || count < 1 || count > 1000) {
     console.log(`[${new Date().toISOString()}] Invalid count parameter: ${req.params.count}`);
-    return res.status(400).send('Count must be a number between 1 and 1000');
+    return res.status(400).send(`Count must be a number between 1 and 1000\n${helpApi.helpMessage}`);
   }
   
   // Generate the specified number of UUIDs
