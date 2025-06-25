@@ -103,7 +103,21 @@ describe('UUID v4 API', () => {
 
     expect(response.status).toBe(400);
     expect(response.headers['content-type']).toMatch(/text\/plain/);
-    expect(response.text).toBe('Count must be a number between 1 and 1000');
+    expect(response.text).toBe(`Count must be a number between 1 and 1000
+Usage:
+    GET /               - Returns a single V4 UUID
+    GET /<count>        - Returns <count> V4 UUIDS. Up to 1000
+    GET /v/<UUID>       - Validates UUID, returns VALID or INVALID in body
+
+    GET /v3/            - Returns a single V3 UUID
+    GET /v3/<count>     - Returns <count> V3 UUIDS. Up to 1000
+    GET /v3/v/<UUID>    - Validates V3 UUID, returns VALID or INVALID in body
+
+    GET /v4/            - Returns a single V4 UUID
+    GET /v4/<count>     - Returns <count> V4 UUIDS. Up to 1000
+    GET /v4/v/<UUID>    - Validates V4 UUID, returns VALID or INVALID in body
+    
+`);
   });
 
   // Test for invalid count parameter (explicit v4 endpoint)
@@ -112,7 +126,21 @@ describe('UUID v4 API', () => {
 
     expect(response.status).toBe(400);
     expect(response.headers['content-type']).toMatch(/text\/plain/);
-    expect(response.text).toBe('Count must be a number between 1 and 1000');
+    expect(response.text).toBe(`Count must be a number between 1 and 1000
+Usage:
+    GET /               - Returns a single V4 UUID
+    GET /<count>        - Returns <count> V4 UUIDS. Up to 1000
+    GET /v/<UUID>       - Validates UUID, returns VALID or INVALID in body
+
+    GET /v3/            - Returns a single V3 UUID
+    GET /v3/<count>     - Returns <count> V3 UUIDS. Up to 1000
+    GET /v3/v/<UUID>    - Validates V3 UUID, returns VALID or INVALID in body
+
+    GET /v4/            - Returns a single V4 UUID
+    GET /v4/<count>     - Returns <count> V4 UUIDS. Up to 1000
+    GET /v4/v/<UUID>    - Validates V4 UUID, returns VALID or INVALID in body
+    
+`);
   });
 
   // Test for count limits (default endpoint)
@@ -121,7 +149,21 @@ describe('UUID v4 API', () => {
     
     expect(response.status).toBe(400);
     expect(response.headers['content-type']).toMatch(/text\/plain/);
-    expect(response.text).toBe('Count must be a number between 1 and 1000');
+    expect(response.text).toBe(`Count must be a number between 1 and 1000
+Usage:
+    GET /               - Returns a single V4 UUID
+    GET /<count>        - Returns <count> V4 UUIDS. Up to 1000
+    GET /v/<UUID>       - Validates UUID, returns VALID or INVALID in body
+
+    GET /v3/            - Returns a single V3 UUID
+    GET /v3/<count>     - Returns <count> V3 UUIDS. Up to 1000
+    GET /v3/v/<UUID>    - Validates V3 UUID, returns VALID or INVALID in body
+
+    GET /v4/            - Returns a single V4 UUID
+    GET /v4/<count>     - Returns <count> V4 UUIDS. Up to 1000
+    GET /v4/v/<UUID>    - Validates V4 UUID, returns VALID or INVALID in body
+    
+`);
   });
 
   // Test for count limits (explicit v4 endpoint)
@@ -130,6 +172,20 @@ describe('UUID v4 API', () => {
     
     expect(response.status).toBe(400);
     expect(response.headers['content-type']).toMatch(/text\/plain/);
-    expect(response.text).toBe('Count must be a number between 1 and 1000');
+    expect(response.text).toBe(`Count must be a number between 1 and 1000
+Usage:
+    GET /               - Returns a single V4 UUID
+    GET /<count>        - Returns <count> V4 UUIDS. Up to 1000
+    GET /v/<UUID>       - Validates UUID, returns VALID or INVALID in body
+
+    GET /v3/            - Returns a single V3 UUID
+    GET /v3/<count>     - Returns <count> V3 UUIDS. Up to 1000
+    GET /v3/v/<UUID>    - Validates V3 UUID, returns VALID or INVALID in body
+
+    GET /v4/            - Returns a single V4 UUID
+    GET /v4/<count>     - Returns <count> V4 UUIDS. Up to 1000
+    GET /v4/v/<UUID>    - Validates V4 UUID, returns VALID or INVALID in body
+    
+`);
   });
 });
