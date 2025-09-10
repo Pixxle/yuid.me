@@ -1,5 +1,5 @@
-const helpApi = require('./help');
-const { v3: uuidv3, validate: uuidValidate } = require('uuid');
+import * as helpApi from './help.js';
+import { v3 as uuidv3, validate as uuidValidate } from 'uuid';
 
 // Default namespace for UUID v3 (using DNS namespace)
 const DEFAULT_NAMESPACE = '6ba7b810-9dad-11d1-80b4-00c04fd430c8'; // DNS namespace
@@ -58,7 +58,7 @@ const validate = (req, res) => {
   }
 };
 
-module.exports = {
+export {
   generateSingle,
   generateMultiple,
   validate

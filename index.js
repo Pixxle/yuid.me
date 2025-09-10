@@ -1,8 +1,8 @@
-const express = require('express');
-const morgan = require('morgan');
-const v4Api = require('./api/v4');
-const v3Api = require('./api/v3');
-const helpApi = require('./api/help');
+import express from 'express';
+import morgan from 'morgan';
+import * as v4Api from './api/v4.js';
+import * as v3Api from './api/v3.js';
+import * as helpApi from './api/help.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -79,4 +79,4 @@ if (process.env.NODE_ENV !== 'test') {
   });
 }
 
-module.exports = app; // Export for testing
+export default app; // Export for testing

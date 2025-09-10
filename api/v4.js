@@ -1,5 +1,5 @@
-const helpApi = require('./help');
-const { v4: uuidv4, validate: uuidValidate } = require('uuid');
+import * as helpApi from './help.js';
+import { v4 as uuidv4, validate as uuidValidate } from 'uuid';
 
 
 // Generate a single UUID v4
@@ -39,7 +39,7 @@ const validate = (req, res) => {
   }
 };
 
-module.exports = {
+export {
   generateSingle,
   generateMultiple,
   validate

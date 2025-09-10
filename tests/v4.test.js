@@ -1,6 +1,6 @@
-const request = require('supertest');
-const { validate: uuidValidate } = require('uuid');
-const app = require('../index');
+import request from 'supertest';
+import { validate as uuidValidate } from 'uuid';
+import app from '../index.js';
 
 describe('UUID v4 API', () => {
   // Test for generating a single UUID (default v4)
