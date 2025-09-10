@@ -17,7 +17,7 @@ const help = (req, res) => {
     res.send(helpMessage);
 };
 
-module.exports = {
+export {
     help,
     helpMessage
 }
