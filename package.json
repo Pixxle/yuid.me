@@ -20,6 +20,6 @@
   "devDependencies": {
     "jest": "^30.2.0",
     "supertest": "^7.1.4",
-    "wrangler": "^4.50.0"
+    "wrangler": "^4.51.0"
   }
 }
